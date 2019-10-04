@@ -227,25 +227,22 @@ make check V=0
 %endif
 
 %pre
-%service_add_pre bluetooth.service
-%service_add_pre bluetooth-mesh.service
+%service_add_pre bluetooth.service bluetooth-mesh.service
 
 %post
 %{?udev_rules_update:%udev_rules_update}
 # todo: check if this is still obeyed / needed with systemd
 %{fillup_only -n bluetooth}
 # We need the bluez systemd service enabled at any time. It won't start up
-# on it's own, as it is triggered by udev in the end (bnc#796671)
+# on its own, as it is triggered by udev in the end (bnc#796671)
 /bin/systemctl enable bluetooth.service 2>&1 || :
 /bin/systemctl daemon-reload >/dev/null 2>&1 || :
 
 %preun
-%service_del_preun bluetooth.service
-%service_del_preun bluetooth-mesh.service
+%service_del_preun bluetooth.service bluetooth-mesh.service
 
 %postun
-%service_del_postun bluetooth.service
-%service_del_postun bluetooth-mesh.service
+%service_del_postun bluetooth.service bluetooth-mesh.service
 
 %post -n libbluetooth3 -p /sbin/ldconfig
 %postun -n libbluetooth3 -p /sbin/ldconfig
