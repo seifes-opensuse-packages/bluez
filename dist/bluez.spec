@@ -16,7 +16,7 @@
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 #
 
-
+# maintained at https://github.com/seifes-opensuse-packages/bluez.git
 Name:           bluez
 Version:        5.51
 Release:        0
@@ -25,9 +25,7 @@ License:        GPL-2.0-or-later
 Group:          Hardware/Mobile
 Url:            http://www.bluez.org
 Source:         http://www.kernel.org/pub/linux/bluetooth/bluez-%{version}.tar.xz
-# maintained at https://github.com/seife/bluez-patches.git
-# stupid obs_scm (or me?) appends the "-" after the name, even if version is disabled.
-Source1:        bluez-patches-.tar.xz
+Source1:        bluez-patches.tar.xz
 Source5:        baselibs.conf
 Source7:        bluetooth.modprobe
 
