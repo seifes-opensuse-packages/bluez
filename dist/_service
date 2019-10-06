@@ -3,7 +3,7 @@
     <param name="url">https://github.com/seifes-opensuse-packages/bluez.git</param>
     <param name="scm">git</param>
     <param name="extract">dist/*</param>
-    <param name="exclude">dist.*</param>
+    <param name="exclude">dist</param>
     <param name="filename">bluez-patches</param>
     <param name="version">_none_</param>
   </service>

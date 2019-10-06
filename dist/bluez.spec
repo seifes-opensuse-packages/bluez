@@ -17,6 +17,8 @@
 #
 
 # maintained at https://github.com/seifes-opensuse-packages/bluez.git
+# contributions via pull requests are welcome!
+#
 Name:           bluez
 Version:        5.51
 Release:        0

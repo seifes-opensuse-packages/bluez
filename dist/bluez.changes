@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Sun Oct  6 13:24:51 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
+
+- update _service to use github.com/seifes-obs-packages/bluez.git
+  as source for the package, fix exclude expression
+
+-------------------------------------------------------------------
 Fri Oct  4 10:50:15 UTC 2019 - Jan Engelhardt <jengelh@inai.de>
 
 - Combine multiple %service_* to reduce generated boilerplate.
