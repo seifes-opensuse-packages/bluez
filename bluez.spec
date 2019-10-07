@@ -27,9 +27,24 @@ License:        GPL-2.0-or-later
 Group:          Hardware/Mobile
 Url:            http://www.bluez.org
 Source:         http://www.kernel.org/pub/linux/bluetooth/bluez-%{version}.tar.xz
-Source1:        bluez-patches.tar.xz
 Source5:        baselibs.conf
 Source7:        bluetooth.modprobe
+# fix some logitech HID devices, bnc#681049, bnc#850478 --seife+obs@b1-systems.com
+Patch1:         bluez-5.11-logitech-hid2hci.patch
+Patch2:         bluez-sdp-unix-path.patch
+# PATCH-FIX-UPSTREAM: find the cups dir in libexec not in libdir
+Patch3:         bluez-cups-libexec.patch
+# workaround for broken tests (reported upstream but not yet fixed)
+Patch4:         bluez-disable-broken-tests.diff
+# boo#1152672, upstream fix
+Patch5:         0001-mesh-Fix-segmentation-fault-on-Join-call.patch
+# Move 43xx firmware path for RPi3 bluetooth support bsc#1140688
+Patch10:        RPi-Move-the-43xx-firmware-into-lib-firmware.patch
+# Upstream suggests to use btmon instead of hcidump and does not want those patches
+# => PATCH-FIX-OPENSUSE for those two :-)
+# fix some memory leak with malformed packet (reported upstream but not yet fixed)
+Patch101:       CVE-2016-9800-tool-hcidump-Fix-memory-leak-with-malformed-packet.patch
+Patch102:       CVE-2016-9804-tool-hcidump-Fix-memory-leak-with-malformed-packet.patch
 
 BuildRequires:  automake
 BuildRequires:  flex
@@ -132,10 +147,15 @@ desktop specific applets like blueman or GNOME or KDE applets).
 {  systemctl status -n0 bluetooth.service > /dev/null && systemctl restart bluetooth.service ; } ||:
 
 %prep
-%setup -q -a 1
-for i in $(cat bluez-patches/series); do
-  patch -p1 -i bluez-patches/$i --fuzz=%{_default_patch_fuzz} %{_default_patch_flags} || exit 1
-done
+%setup -q
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch10 -p1
+%patch101 -p1
+%patch102 -p1
 mkdir dbus-apis
 cp -a doc/*.txt dbus-apis/
 # FIXME: Change the dbus service to be a real service, not systemd launched
@@ -229,22 +249,25 @@ make check V=0
 %endif
 
 %pre
-%service_add_pre bluetooth.service bluetooth-mesh.service
+%service_add_pre bluetooth.service
+%service_add_pre bluetooth-mesh.service
 
 %post
 %{?udev_rules_update:%udev_rules_update}
 # todo: check if this is still obeyed / needed with systemd
 %{fillup_only -n bluetooth}
 # We need the bluez systemd service enabled at any time. It won't start up
-# on its own, as it is triggered by udev in the end (bnc#796671)
+# on it's own, as it is triggered by udev in the end (bnc#796671)
 /bin/systemctl enable bluetooth.service 2>&1 || :
 /bin/systemctl daemon-reload >/dev/null 2>&1 || :
 
 %preun
-%service_del_preun bluetooth.service bluetooth-mesh.service
+%service_del_preun bluetooth.service
+%service_del_preun bluetooth-mesh.service
 
 %postun
-%service_del_postun bluetooth.service bluetooth-mesh.service
+%service_del_postun bluetooth.service
+%service_del_postun bluetooth-mesh.service
 
 %post -n libbluetooth3 -p /sbin/ldconfig
 %postun -n libbluetooth3 -p /sbin/ldconfig

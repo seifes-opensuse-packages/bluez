@@ -59,9 +59,8 @@ Fri Sep 20 19:32:43 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
   * bluez-5.50-a2dp-backports.patch
   * bluez-5.50-gcc9.patch
   * disable_some_obex_tests.patch
-- refreshed bluez-cups-libexec.patch
-- rebased bluez-5.45-disable-broken-tests.diff to bluez-5.51-
-  disable-broken-tests.diff
+  * bluez-5.45-disable-broken-tests.diff
+- add bluez-disable-broken-tests.diff
 - add temporary rpmlintrc until security team approves
 
 -------------------------------------------------------------------

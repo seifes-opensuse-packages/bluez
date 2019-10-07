@@ -1,8 +1,0 @@
-bluez-5.11-logitech-hid2hci.patch
-bluez-sdp-unix-path.patch
-bluez-cups-libexec.patch
-bluez-5.51-disable-broken-tests.diff
-RPi-Move-the-43xx-firmware-into-lib-firmware.patch
-CVE-2016-9800-tool-hcidump-Fix-memory-leak-with-malformed-packet.patch
-CVE-2016-9804-tool-hcidump-Fix-memory-leak-with-malformed-packet.patch
-0001-mesh-Fix-segmentation-fault-on-Join-call.patch
