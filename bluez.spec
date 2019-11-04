@@ -21,7 +21,7 @@
 # contributions via pull requests are welcome!
 #
 Name:           bluez
-Version:        5.51
+Version:        5.52
 Release:        0
 Summary:        Bluetooth Stack for Linux
 License:        GPL-2.0-or-later
@@ -37,8 +37,6 @@ Patch2:         bluez-sdp-unix-path.patch
 Patch3:         bluez-cups-libexec.patch
 # workaround for broken tests (reported upstream but not yet fixed)
 Patch4:         bluez-disable-broken-tests.diff
-# boo#1152672, upstream fix
-Patch5:         0001-mesh-Fix-segmentation-fault-on-Join-call.patch
 # Move 43xx firmware path for RPi3 bluetooth support bsc#1140688
 Patch10:        RPi-Move-the-43xx-firmware-into-lib-firmware.patch
 # Upstream suggests to use btmon instead of hcidump and does not want those patches
@@ -153,7 +151,6 @@ desktop specific applets like blueman or GNOME or KDE applets).
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 %patch10 -p1
 %patch101 -p1
 %patch102 -p1
