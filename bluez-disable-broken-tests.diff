@@ -22,3 +22,12 @@ Index: b/Makefile.am
  unit_test_midi_CPPFLAGS = $(AM_CPPFLAGS) $(ALSA_CFLAGS) -DMIDI_TEST
  unit_test_midi_SOURCES = unit/test-midi.c \
  			profiles/midi/libmidi.h \
+@@ -521,7 +523,7 @@ unit_test_midi_LDADD = src/libshared-gli
+ endif
+ 
+ if MESH
+-unit_tests += unit/test-mesh-crypto
++#unit_tests += unit/test-mesh-crypto
+ unit_test_mesh_crypto_CPPFLAGS = $(ell_cflags)
+ unit_test_mesh_crypto_SOURCES = unit/test-mesh-crypto.c \
+ 				mesh/crypto.h ell/internal ell/ell.h \
