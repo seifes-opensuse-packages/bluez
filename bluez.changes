@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Tue Nov  5 09:53:02 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
+
+- enable unit/test-mesh-crypto again, disable LTO instead which
+  makes this test fail (boo#1155889)
+
+-------------------------------------------------------------------
 Mon Nov  4 21:22:20 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
 
 - update to version 5.52:

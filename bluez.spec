@@ -16,6 +16,8 @@
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 #
 
+# with LTO, the unit/test-mesh-crypto test segfaults (boo#1155889)
+%define _lto_cflags %{nil}
 
 # maintained at https://github.com/seifes-opensuse-packages/bluez.git
 # contributions via pull requests are welcome!
