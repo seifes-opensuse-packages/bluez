@@ -300,7 +300,7 @@ make check V=0
 %endif
 %{_bindir}/hcidump
 %{_bindir}/bccmd
-%{_libexecdir}/udev/
+%{_prefix}/lib/udev/
 %{_mandir}/man1/btattach.1%{ext_man}
 %{_mandir}/man1/hcidump.1%{ext_man}
 %{_mandir}/man1/hciattach.1%{ext_man}
