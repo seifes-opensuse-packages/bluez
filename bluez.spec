@@ -28,7 +28,6 @@ License:        GPL-2.0-or-later
 Group:          Hardware/Mobile
 Url:            http://www.bluez.org
 Source:         http://www.kernel.org/pub/linux/bluetooth/bluez-%{version}.tar.xz
-# just to make crazy checks happy
 Source2147483647:README.md
 Source5:        baselibs.conf
 Source7:        bluetooth.modprobe
