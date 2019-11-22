@@ -16,6 +16,11 @@
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 #
 
+%if 0%{?suse_version} >= 1550 || 0%{?sle_version} >= 150200
+%bcond_without mesh
+%else
+%bcond_with    mesh
+%endif
 
 # maintained at https://github.com/seifes-opensuse-packages/bluez.git
 # contributions via pull requests are welcome!
@@ -59,8 +64,13 @@ BuildRequires:  pkgconfig(dbus-1) >= 1.6
 BuildRequires:  pkgconfig(ell) >= 0.3
 %endif
 BuildRequires:  pkgconfig(glib-2.0) >= 2.28
+# libgio-2_0-0 has a runtime dependency on shared-mime-info, which is not
+# required for building here, but causes a build loop
+#!BuildIgnore:  shared-mime-info
+%if %{with mesh}
 # json-c is needed for --enable-mesh
 BuildRequires:  pkgconfig(json-c)
+%endif
 BuildRequires:  pkgconfig(libcap-ng)
 BuildRequires:  pkgconfig(libical)
 BuildRequires:  pkgconfig(libudev)
@@ -175,7 +185,7 @@ autoreconf -fi
 	--enable-library	\
 	--enable-tools		\
 	--enable-cups		\
-%if 0%{?suse_version} >= 1550
+%if %{with mesh}
 	--enable-mesh		\
 %endif
 	--enable-midi		\
@@ -224,6 +234,7 @@ chmod 0644 *.py *.xml *.dtd
 # fix python shebang
 sed -i -e '1s/env p/p/' %{buildroot}%{_libdir}/bluez/test/{example-gatt-{client,server},test-mesh}
 
+%if %{with mesh}
 # boo#1151518
 mkdir -p %{buildroot}%{_defaultdocdir}/%{name}
 mv %{buildroot}%{_sysconfdir}/dbus-1/system.d/bluetooth-mesh.conf %{buildroot}%{_defaultdocdir}/%{name}
@@ -239,6 +250,7 @@ org.bluez.mesh.service to %{_datadir}/dbus-1/system-services/,
 then reboot.
 EOF
 touch -r %{SOURCE0} %{buildroot}%{_defaultdocdir}/%{name}/README-mesh.SUSE
+%endif
 
 %check
 %if ! 0%{?qemu_user_space_build}
@@ -271,7 +283,9 @@ make check V=0
 %files
 %defattr(-, root, root)
 %doc AUTHORS ChangeLog README dbus-apis src/main.conf
+%if %{with mesh}
 %doc %{_defaultdocdir}/%{name}/*
+%endif
 %license COPYING
 %{_bindir}/bluemoon
 %{_bindir}/btattach
@@ -290,11 +304,13 @@ make check V=0
 %{_libdir}/bluetooth/plugins/sixaxis.so
 %dir %{_libexecdir}/bluetooth
 %{_libexecdir}/bluetooth/bluetoothd
+%if %{with mesh}
 %{_libexecdir}/bluetooth/bluetooth-meshd
+%endif
 %{_libexecdir}/bluetooth/obexd
 %{_bindir}/bluetoothctl
 %{_bindir}/btmon
-%if 0%{?suse_version} >= 1550
+%if %{with mesh}
 %{_bindir}/meshctl
 %endif
 %{_bindir}/hcidump
@@ -320,7 +336,9 @@ make check V=0
 %dir %{_sysconfdir}/modprobe.d
 %config(noreplace) %{_sysconfdir}/modprobe.d/50-bluetooth.conf
 %{_unitdir}/bluetooth.service
+%if %{with mesh}
 %{_unitdir}/bluetooth-mesh.service
+%endif
 %{_datadir}/dbus-1/system-services/org.bluez.service
 %{_datadir}/dbus-1/services/org.bluez.obex.service
 # not packaged, boo#1151518

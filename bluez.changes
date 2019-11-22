@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Thu Nov 21 16:51:16 UTC 2019 - Stefan Brüns <stefan.bruens@rwth-aachen.de>
+
+- BuildIgnore shared-mime-info, pulled in by libgio-2_0-0, not
+  required for building, but causes a build loop.
+- Add bcond for mesh, also enable mesh on Leap 15.2/SLE15SP2.
+- Properly conditionalize all files which are only built with enabled
+  mesh functionality, fixes build on Leap 15.1 and earlier.
+
+-------------------------------------------------------------------
 Thu Nov 14 18:17:29 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
 
 - remove comment
