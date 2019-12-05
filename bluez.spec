@@ -1,7 +1,7 @@
 #
 # spec file for package bluez
 #
-# Copyright (c) 2019 SUSE LINUX GmbH, Nuernberg, Germany.
+# Copyright (c) 2019 SUSE LLC
 # Copyright (c) 2010-2019 B1 Systems GmbH, Vohburg, Germany
 #
 # All modifications and additions to the file contributed by third parties
@@ -15,6 +15,7 @@
 
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 #
+
 
 %if 0%{?suse_version} >= 1550 || 0%{?sle_version} >= 150200
 %bcond_without mesh
@@ -31,7 +32,7 @@ Release:        0
 Summary:        Bluetooth Stack for Linux
 License:        GPL-2.0-or-later
 Group:          Hardware/Mobile
-Url:            http://www.bluez.org
+URL:            http://www.bluez.org
 Source:         http://www.kernel.org/pub/linux/bluetooth/bluez-%{version}.tar.xz
 Source2147483647:README.md
 Source5:        baselibs.conf
