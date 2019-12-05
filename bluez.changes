@@ -15,11 +15,6 @@ Thu Nov 21 16:51:16 UTC 2019 - Stefan Brüns <stefan.bruens@rwth-aachen.de>
   mesh functionality, fixes build on Leap 15.1 and earlier.
 
 -------------------------------------------------------------------
-Thu Nov 14 18:17:29 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
-
-- remove comment
-
--------------------------------------------------------------------
 Thu Nov  7 11:14:13 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
 
 - fix udev directory from %_libexecdir to %_prefix/lib
@@ -42,26 +37,13 @@ Mon Oct  7 14:56:28 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
 -------------------------------------------------------------------
 Sun Oct  6 13:24:51 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
 
-- update _service to use github.com/seifes-obs-packages/bluez.git
-  as source for the package, fix exclude expression
+- add _service to use github.com/seifes-obs-packages/bluez.git
+  as source for the package
 
 -------------------------------------------------------------------
 Fri Oct  4 10:50:15 UTC 2019 - Jan Engelhardt <jengelh@inai.de>
 
 - Combine multiple %service_* to reduce generated boilerplate.
-
--------------------------------------------------------------------
-Fri Oct  4 09:35:44 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
-
-- consolidate patches bluez-sdp-unix-path.patch,
-  bluez-cups-libexec.patch, bluez-5.51-disable-broken-tests.diff,
-  RPi-Move-the-43xx-firmware-into-lib-firmware.patch,
-  CVE-2016-9800-tool-hcidump-Fix-memory-leak-with-malformed-packet.patch,
-  CVE-2016-9804-tool-hcidump-Fix-memory-leak-with-malformed-packet.patch,
-  bluez-5.11-logitech-hid2hci.patch into bluez-patches-.tar.xz to
-  clean up the spec file and make it more maintainable
-- move patches to github for easier maintainability
-- add _service for patch tarball generation
 
 -------------------------------------------------------------------
 Wed Oct  2 08:33:56 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
