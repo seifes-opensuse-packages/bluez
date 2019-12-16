@@ -38,6 +38,7 @@ URL:            http://www.bluez.org
 Source:         http://www.kernel.org/pub/linux/bluetooth/bluez-%{version}.tar.xz
 # unused in the package, but allows to use "extract *.*" in source service
 Source42:       README.md
+NoSource:       42
 Source5:        baselibs.conf
 Source7:        bluetooth.modprobe
 # fix some logitech HID devices, bnc#681049, bnc#850478 --seife+obs@b1-systems.com
