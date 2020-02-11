@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Tue Feb 11 18:32:48 UTC 2020 - Stefan Seyfried <seife+obs@b1-systems.com>
+
+- fix systemctl path (boo#1163228)
+
+-------------------------------------------------------------------
 Mon Dec 16 14:27:14 UTC 2019 - Stefan Seyfried <seife+obs@b1-systems.com>
 
 - add NoSource tag for omitting README.md from src.rpm
